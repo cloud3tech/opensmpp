@@ -50,7 +50,7 @@ import org.smpp.smscsim.util.Table;
  * <p>
  * User file can be specified using <code>usersFileName</code> property, e.g.: <code>-DusersFileName=/my/path/to/users.txt</code>
  * </p>
- * 
+ *
  * @author Logica Mobile Networks SMPP Open Source Team
  * @version $Id: Simulator.java 72 2008-07-15 19:43:00Z sverkera $
  * @see SimulatorPDUProcessor
@@ -139,15 +139,7 @@ public class Simulator {
 
 		while (keepRunning) {
 			System.out.println();
-			System.out.println("- 1 start simulation");
-			System.out.println("- 2 stop simulation");
-			System.out.println("- 3 list clients");
-			System.out.println("- 4 send message");
-			System.out.println("- 5 list messages");
-			System.out.println("- 6 reload users file");
-			System.out.println("- 7 log to screen " + (displayInfo ? "off" : "on"));
-			System.out.println("- 0 exit");
-			System.out.print("> ");
+			System.out.println("Simulator starting on port 2775 -");
 			optionInt = -1;
 			try {
 				option = keyboard.readLine();
@@ -156,38 +148,8 @@ public class Simulator {
 				debug.write("exception reading keyboard " + e);
 				optionInt = -1;
 			}
-			switch (optionInt) {
-				case 1 :
 					start();
-					break;
-				case 2 :
-					stop();
-					break;
-				case 3 :
-					listClients();
-					break;
-				case 4 :
-					sendMessage();
-					break;
-				case 5 :
-					messageList();
-					break;
-				case 6 :
 					reloadUsers();
-					break;
-				case 7 :
-					logToScreen();
-					break;
-				case 0 :
-					exit();
-					break;
-				case -1 :
-					// default option if entering an option went wrong
-					break;
-				default :
-					System.out.println("Invalid option. Choose between 0 and 6.");
-					break;
-			}
 		}
 
 		System.out.println("Exiting simulator.");
@@ -197,16 +159,13 @@ public class Simulator {
 	/**
 	 * Permits a user to choose the port where to listen on and then creates and
 	 * starts new instance of <code>SMSCListener</code>.
-	 * An instance of the <code>SimulatorPDUProcessor</code> is created 
+	 * An instance of the <code>SimulatorPDUProcessor</code> is created
 	 * and this instance is passed to the <code>SMSCListener</code> which is started
 	 * just after.
 	 */
 	protected void start() throws IOException {
 		if (smscListener == null) {
-			System.out.print("Enter port number> ");
-			int port = Integer.parseInt(keyboard.readLine());
-			System.out.print("Starting listener... ");
-			smscListener = new SMSCListenerImpl(port, true);
+			smscListener = new SMSCListenerImpl(2775, true);
 			processors = new PDUProcessorGroup();
 			messageStore = new ShortMessageStore();
 			deliveryInfoSender = new DeliveryInfoSender();
@@ -343,7 +302,7 @@ public class Simulator {
 
 	/**
 	 * Permits data to be sent to a specific client.
-	 * With the id of the client set by the user, the method <code>sendMessage</code> 
+	 * With the id of the client set by the user, the method <code>sendMessage</code>
 	 * gets back the specific reference to the client's <code>PDUProcessor</code>.
 	 * With this reference you are able to send data to the client.
 	 */
@@ -399,7 +358,7 @@ public class Simulator {
  * Revision 1.1  2003/07/23 00:28:39  sverkera
  * Imported
  *
- * 
+ *
  * Old changelog:
  * 20-09-01 ticp@logica.com added support for sending of delivery info
  * 26-09-01 ticp@logica.com debug now in a group
