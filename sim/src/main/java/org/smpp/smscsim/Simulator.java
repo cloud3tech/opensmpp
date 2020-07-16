@@ -72,7 +72,7 @@ public class Simulator {
 	/**
 	 * Name of file with user (client) authentication information.
 	 */
-	static String usersFileName = System.getProperty("usersFileName", "etc/users.txt");
+	static String usersFileName = System.getProperty("usersFileName", "users.txt");
 
 	/**
 	 * Directory for creating of debug and event files.
@@ -133,7 +133,9 @@ public class Simulator {
 	protected void menu() throws IOException {
 		debug.write("simulator started");
 
-		keepRunning = true;
+		start();
+
+		/*keepRunning = true;
 		String option = "1";
 		int optionInt;
 
@@ -153,7 +155,7 @@ public class Simulator {
 		}
 
 		System.out.println("Exiting simulator.");
-		debug.write("simulator exited.");
+		debug.write("simulator exited."); */
 	}
 
 	/**
@@ -175,7 +177,7 @@ public class Simulator {
 			factory.setDisplayInfo(displayInfo);
 			smscListener.setPDUProcessorFactory(factory);
 			smscListener.start();
-			System.out.println("started.");
+			System.out.println("Simulator successfully started and listening to port 2775");
 		} else {
 			System.out.println("Listener is already running.");
 		}
