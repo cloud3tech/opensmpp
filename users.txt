@@ -48,3 +48,7 @@ name=2496636
 password=UDDNWK
 timeout=unlimited
 
+name=GoodEggHC
+password=9NrtQ9UZ
+timeout=unlimited
+

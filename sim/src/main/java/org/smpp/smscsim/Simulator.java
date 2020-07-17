@@ -167,7 +167,7 @@ public class Simulator {
 	 */
 	protected void start() throws IOException {
 		if (smscListener == null) {
-			smscListener = new SMSCListenerImpl(2775, true);
+			smscListener = new SMSCListenerImpl(3207, true);
 			processors = new PDUProcessorGroup();
 			messageStore = new ShortMessageStore();
 			deliveryInfoSender = new DeliveryInfoSender();
@@ -177,7 +177,7 @@ public class Simulator {
 			factory.setDisplayInfo(displayInfo);
 			smscListener.setPDUProcessorFactory(factory);
 			smscListener.start();
-			System.out.println("Simulator successfully started and listening to port 2775");
+			System.out.println("Simulator successfully started and listening to port 3207");
 		} else {
 			System.out.println("Listener is already running.");
 		}
