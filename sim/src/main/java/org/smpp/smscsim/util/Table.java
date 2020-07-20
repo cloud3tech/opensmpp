@@ -204,7 +204,8 @@ public class Table {
 	 * @see TableParser
 	 */
 	public synchronized void read(String fileName) throws FileNotFoundException, IOException {
-		FileInputStream is = new FileInputStream(fileName);
+		//FileInputStream is = new FileInputStream(fileName);
+		InputStream is = getClass().getResourceAsStream(fileName);
 		records = new LinkedList<Record>(); // clear current list of records
 		read(is);
 		is.close();
