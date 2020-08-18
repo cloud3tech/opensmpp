@@ -11,6 +11,7 @@
 package org.smpp.smscsim;
 
 import java.io.IOException;
+import java.util.UUID;
 
 import org.smpp.*;
 import org.smpp.debug.Debug;
@@ -321,9 +322,8 @@ public class SimulatorPDUProcessor extends PDUProcessor {
 	 * @return unique message id
 	 */
 	private String assignMessageId() {
-		String messageId = "Smsc";
-		intMessageId++;
-		messageId += intMessageId;
+		String messageId = "Smsc-";
+		messageId += UUID.randomUUID().toString();
 		return messageId;
 	}
 
